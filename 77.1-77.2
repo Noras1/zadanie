@@ -36,6 +36,26 @@ void z1() {
  cout << "a) " << 19 << endl; 
  cout << "b) " << szyfruj(s, key) << endl << endl;
 }
+void z2() {
+cout << "Zadanie 2:" << endl;
+string key = "ZLODZIEJCZASU"; // wycięte z pliku
+string s = "";
+string temp;
+ifstream in("szyfr.txt");
+while (in >> temp) s += temp + " ";
+  
+int keyIndex = 0;
+for (int i = 0; i < s.length(); i++) {
+if (s[i] == ' ' || s[i] == ',' || s[i] == '.') continue;
+s[i] -= key[keyIndex];
+s[i] += 65;
+if (s[i] < 'A') s[i] += 26;
+keyIndex++;
+    if (keyIndex == key.length()) keyIndex = 0;
+  }
+  cout << s << endl << endl;
+}
 int main() {
-  z1();
+z1();
+z2();
 }
